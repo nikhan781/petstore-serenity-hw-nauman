@@ -34,6 +34,7 @@ public class UserSteps {
     @Step("Getting user record with username: {0}")
     public ValidatableResponse getUserByUserName(String username) {
         return SerenityRest.given().log().all()
+                .header("Content-Type", "application/json")
                 .when()
                 .pathParam("username", username)
                 .get(EndPoint.GET_USER)
@@ -54,6 +55,7 @@ public class UserSteps {
 
         return SerenityRest.given().log().all()
                 .header("Content-Type", "application/json")
+                .header("accept", "application/json")
                 .pathParam("username", username)
                 .when()
                 .body(userPojo)
